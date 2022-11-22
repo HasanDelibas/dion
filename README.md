@@ -7,7 +7,7 @@
 
 ## Usage
 ```js
-Directive.parse( string, DIRECTIVE="-", SEPERATOR="/" , ASSIGN="=")
+Dion.parse( string, DIRECTIVE="-", SEPERATOR="/" , ASSIGN="=")
 ```
 
 ## Basic Rules
