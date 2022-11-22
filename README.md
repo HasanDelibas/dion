@@ -2,7 +2,7 @@
 ## Installing
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/HasanDelibas/directive@v1.0.1/directive.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HasanDelibas/dion@v1.0.1/dion.js"></script>
 ```
 
 ## Usage
