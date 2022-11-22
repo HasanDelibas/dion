@@ -1,7 +1,7 @@
 # Installing
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/HasanDelibas/directive@main/directive.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HasanDelibas/directive@v1.0.0/directive.js"></script>
 ```
 
 # Using
