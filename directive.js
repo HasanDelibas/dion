@@ -4,7 +4,6 @@
 
   function Define(obj, path, value) {
     // -- Calcluate the Index --//
-
     let index = [-1];
     let i = 0;
     let wait = false;
@@ -19,11 +18,9 @@
       }
     }
     list.push(path.substring(index[index.length-1]+1,path.length));
-
-
-
-    //let list = path.split("/");
-    list = list.map(e => e.trim()).map(e => isNaN(e) == false ? parseInt(e) : e).filter(e=>e!="");
+    list = list.map(e => e.trim()).filter(e=>e!="");
+    list = list.map(e => isNaN(e) == false ? parseInt(e) : e);
+    //-- Define Object --//
     let temp = obj;
     for (let i = 0; i < list.length - 1; i++) {
       let key = list[i];
@@ -41,7 +38,7 @@
     }
     let lastKey = list[list.length - 1];
     if (lastKey == parseInt(lastKey)) {
-      // TODO: CHECK IF ARRAY
+      // CHECK IF ARRAY
       temp.push(value);
     } else {
       temp[lastKey] = value;
@@ -82,8 +79,6 @@
         }
       }
     }
-
     return result;
   }
-
 })();
