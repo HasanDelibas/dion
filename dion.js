@@ -1,15 +1,15 @@
 (function () {
 
-  window.Directive = {}
+  window.Dion = {}
 
-  function Define(obj, path, value) {
+  function Define(obj, path, value,SEPERATOR="/") {
     // -- Calcluate the Index --//
     let index = [-1];
     let i = 0;
     let wait = false;
     let list = [];
     for(let i = 0; i < path.length; i++){
-      if(path[i] == "/" && wait==false){
+      if(path[i] == SEPERATOR && wait==false){
         list.push(path.substring(index[index.length-1]+1,i));
         index.push(i);
       }
@@ -45,7 +45,7 @@
     }
   }
 
-  Directive.parse = function (text) {
+  Dion.parse = function (text, DIRECTIVE="-", SEPERATOR="/" , ASSIGN="="){
     text = text.split("\r").join("");
     // ; /path/to/file.js
     let lines = text.split("\n");
@@ -55,21 +55,28 @@
     let currentText = "";
     for (let line = 0; line < lines.length; line++) {
       let row = lines[line];
-      if (row.startsWith(";")) {
+      if (row.startsWith(DIRECTIVE)) {
         // Close previous path
         if(currentPath!=""){
-          Define(result, currentPath, currentText);
+          Define(result, currentPath, currentText.substring(0,currentText.length-1));
           currentPath = "";
           currentText = "";
         }
 
-        let directive = row.split(";")[1].trim();
+        if(row.trim() == (new Array(row.trim().length)).fill(DIRECTIVE).join("")){
+          continue;
+        }
+
+        let directive = row.split(DIRECTIVE);
+        directive.splice(0, 1);
+        directive = directive.join(DIRECTIVE).trim();
+        
         // single line define
-        if (directive.indexOf("=") > -1) {
-          let path = directive.split("=")[0];
-          let value = directive.split("=")[1].trim();
+        if (directive.indexOf(ASSIGN) > -1) {
+          let path = directive.split(ASSIGN)[0];
+          let value = directive.split(ASSIGN)[1].trim();
           value = JSON.parse(value);
-          Define(result, path, value);
+          Define(result, path, value, SEPERATOR);
         }else{
           currentPath = directive;
         }
