@@ -2,7 +2,7 @@
 ## Installing
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/HasanDelibas/dion@v1.0.1/dion.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HasanDelibas/dion@v1.0.2/dion.js"></script>
 ```
 
 ## Usage
