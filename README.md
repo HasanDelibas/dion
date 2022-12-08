@@ -2,13 +2,51 @@
 ## Installing
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/HasanDelibas/dion@v1.0.2/dion.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HasanDelibas/dion@v1.0.3/dion.js"></script>
 ```
 
 ## Usage
+### Dion.parse()
 ```js
 Dion.parse( string, DIRECTIVE="-", SEPERATOR="/" , ASSIGN="=")
 ```
+
+### Dion.define
+```js	
+Dion.define(object,['path','to'],value)
+```
+
+### Dion.default()
+```js
+let object = {
+  path:{
+    to:{
+      value: "Hello World"
+    },
+    any:{},
+    other:{}
+  }
+}
+
+Dion.default( object, "path/_/value", "Hello World" )
+console.log( object )
+
+{
+  path:{
+    to:{
+      value: "Hello World"
+    },
+    any:{
+      value: "Hello World"
+    },
+    other:{
+      value: "Hello World"
+    }
+  }
+}
+```
+
+
 
 ## Basic Rules
 * Every data starts with `-` character.
@@ -84,5 +122,51 @@ print( math.sin( math.radians(30) ) )
       "custom/path": true
     }
   }
+}
+```
+
+## Minus Character In Data
+
+**.dion**
+```
+- path/to/value
+&minus; This is a minus character
+```
+**.json**
+```json
+{
+  "path": {
+    "to": {
+      "value": "- This is a minus character"
+    }
+  }
+}
+```
+
+
+## Prefix
+**.dion**
+```
+- path/to/value:
+- name="Hasan"
+- surname="Delibas"
+# Rebase
+- :
+- foo="bar"
+```
+
+
+**.json**
+```json
+{
+  "path": {
+    "to": {
+      "value": {
+        "name": "Hasan",
+        "surname": "Delibas"
+      }
+    }
+  },
+  "foo": "bar"
 }
 ```
